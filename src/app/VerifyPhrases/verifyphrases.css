@@ -1,0 +1,92 @@
+.phrases-grid {
+  width: 100%;
+  max-width: 400px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, auto);
+  gap: 1rem;
+  margin: 0 auto;
+}
+
+.phrase-item {
+  width: 100%;
+  border: none;
+  border-radius: 15px;
+}
+
+.phrase-input {
+  text-align: center;
+  color: aliceblue;
+  width: 100%;
+  height: 40px;
+  border: none;
+  border-radius: 15px;
+  background-color: rgb(28, 37, 65);
+  font-size: 14px; 
+}
+
+.verfy-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.verify-title {
+  color: aliceblue;
+}
+
+.verify-description {
+  color: aliceblue;
+}
+
+.finish-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.finish-button.disabled {
+  background-color: grey;
+  color: white;
+  cursor: not-allowed;
+}
+
+.finish-button.enabled {
+  background-color: green;
+  color: white;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 400px) {
+  .phrases-grid {
+    gap: 0.5rem; 
+  }
+
+  .phrase-input {
+    height: 35px;
+    font-size: 12px; 
+  }
+
+  .verfy-container {
+    gap: 20px;
+  }
+
+  .finish-button {
+    padding: 8px 16px; 
+    font-size: 14px; 
+  }
+}
+
+@media screen and (max-width: 280px) {
+  .phrase-input {
+    height: 30px;
+    font-size: 10px;
+  }
+
+  .finish-button {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}

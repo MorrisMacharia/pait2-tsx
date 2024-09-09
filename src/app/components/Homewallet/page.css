@@ -1,0 +1,159 @@
+/* Base styles */
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 0 10px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.balance-header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  color: #8a94b0;
+}
+
+.balance-header span {
+  font-size: 18px;
+}
+
+.balance {
+  color: #f2f2fb;
+  font-size: 28px;
+  font-weight: 700;
+  margin: 2px 0;
+  text-align: left;
+  width: 100%;
+}
+
+.breakdown {
+  width: 100%;
+  color: #f2f2fb;
+}
+
+.breakdown-item {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #3a506b;
+  flex-direction: row;
+  padding: 10px 0;
+}
+
+.breakdown-item .bal-box {
+  display: flex;
+  gap: 5px;
+}
+
+.breakdown-item span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.breakdown-item p {
+  color: #8a94b0;
+  margin: 0;
+}
+
+.pait {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: radial-gradient(
+      92.72% 113.36% at 70.08% 0.1%,
+      rgb(191, 168, 255) 0%,
+      rgba(191, 168, 255, 0) 100%
+    ),
+    linear-gradient(181deg, rgb(251, 253, 255) 1.24%, rgb(199, 209, 219) 99.07%);
+  box-shadow: rgba(218, 205, 255, 0.6) 0px 0px 24px 0px;
+  font-size: 14px;
+  color: var(--Background, #0b132b);
+  gap: 12px;
+  margin: 10px 0;
+}
+
+.wordings {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.wordings h2 {
+  color: #0b132b;
+  font-weight: 600;
+  font-size: 20px;
+  margin: 0;
+}
+
+.wordings p {
+  margin: 0;
+}
+
+.one {
+  color: #3a506b;
+}
+
+.one span {
+  color: #45a5a3;
+  font-weight: 600;
+}
+
+.buybutton {
+  justify-content: center;
+  border-radius: 1000px;
+  background-color: #0b132b;
+  display: flex;
+  margin-top: 8px;
+  gap: 4px;
+  color: #f2f2fb;
+  line-height: 143%;
+  padding: 4px 20px;
+  border: none;
+  cursor: pointer;
+  max-width: 140px;
+}
+
+/* Responsive styles */
+@media screen and (min-width: 768px) {
+  .home {
+    padding: 0 20px;
+  }
+
+  .balance-header span {
+    font-size: 22px;
+  }
+
+  .balance {
+    font-size: 32px;
+  }
+
+  .pait {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .wordings h2 {
+    font-size: 22px;
+  }
+
+  .buybutton {
+    padding: 4px 24px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .pait {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .buybutton {
+    align-self: flex-start;
+  }
+}

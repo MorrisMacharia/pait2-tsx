@@ -1,0 +1,95 @@
+.home1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.home-link {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  padding-bottom: 32px;
+}
+
+h2 {
+  color: #8a94b0;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  width: 100%;
+}
+
+.cryptopurchase {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+.sp{
+  display: flex;
+  gap: 5px;
+}
+.token-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid #3a506b;
+  background: radial-gradient(
+      120% 280% at 0% 50%,
+      rgba(146, 75, 250, 0.2) 0%,
+      rgba(67, 176, 254, 0.08) 29%,
+      rgba(27, 251, 156, 0.09) 63.5%,
+      rgba(27, 251, 156, 0) 100%
+    ),
+    #1c2541;
+  backdrop-filter: blur(5.2px);
+}
+
+.token-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-left: 10px;
+}
+
+.token-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.token-description {
+  font-size: 14px;
+  color: #8a94b0;
+}
+
+.token-price {
+  font-size: 14px;
+  color: #5bc0be;
+}
+
+.small-button,
+.connect-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 20px;
+  border: none;
+  border-radius: 1000px;
+  background-color: #fff;
+  color: #000;
+}
+
+.connect-wallet {
+  margin: 32px 0;
+  text-decoration: none;
+}
+
+ 
+

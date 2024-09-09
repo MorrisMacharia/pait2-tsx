@@ -1,0 +1,73 @@
+.dock {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+  padding: 20px 0;
+}
+
+.dock1, .dock2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  border: none;
+  background-color: #253052;
+}
+
+.dock1 {
+  background-color: #45a5a3;
+}
+
+.hm {
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.btn11 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .dock {
+    padding: 10px 0;
+  }
+
+  .dock1, .dock2 {
+    width: 56px;
+    height: 56px;
+  }
+
+  .hm {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dock {
+    padding: 8px 0;
+    gap: 8px;
+  }
+
+  .dock1, .dock2 {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+  }
+
+  .hm {
+    font-size: 10px;
+  }
+
+  .dock img {
+    width: 20px;
+  }
+}
