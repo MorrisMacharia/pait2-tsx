@@ -30,7 +30,7 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children }) => {
         flexDirection: "column",
         justifyContent: "center",
         minHeight: "100vh",
-        padding: isMobile ? "10px" : "20px",
+        padding: isMobile ? "50px" : "20px",
         position: "relative",
       }}
     >
