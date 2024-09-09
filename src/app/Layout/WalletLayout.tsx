@@ -4,7 +4,6 @@ import React, { useState, useEffect, ReactNode } from "react";
 import { WalletNav } from "../components/WalletNav/WalletNav";
 import { WalletFooter } from "../components/WalletFooter/WalletFooter";
 
-// Define prop types
 interface WalletLayoutProps {
   children: ReactNode;
   allPhrasesFilled: boolean;

@@ -2,7 +2,6 @@ import React from "react";
 import Image from "next/image";
 import "../../Layout/home.css";
 
-// Define prop types
 interface TokenCardProps {
   name: string;
   price: string;
