@@ -10,7 +10,6 @@ import { TokenCard } from "./components/Homewallet";
 import PaitCard from "./components/Homewallet/Card";
 import HomeBalance from "./components/Homewallet/Balance";
 
-// Define the type for the token objects
 interface Token {
   name: string;
   price: string;
@@ -56,13 +55,13 @@ export default function Home(): JSX.Element {
   return (
     <HomeLayout>
       <div className="home1">
-        {showBal ? (
+        {/* {showBal ? (
           <HomeBalance />
         ) : (
           <div className="home-link">
             <Image src="/Clip.png" alt="home" width={122} height={34} />
           </div>
-        )}
+        )} */}
         <PaitCard />
         <h2>Other Tokens</h2>
         <div className="cryptopurchase">

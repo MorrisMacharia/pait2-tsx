@@ -1,7 +1,6 @@
 import React, { useState, useEffect, ReactNode } from "react";
 import BottomNavbar from "../components/Dock/dock";
 
-// Define prop types
 interface HomeLayoutProps {
   children: ReactNode;
 }
@@ -30,8 +29,7 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children }) => {
         flexDirection: "column",
         justifyContent: "center",
         minHeight: "100vh",
-        padding: isMobile ? "50px" : "20px",
-        position: "relative",
+        padding: isMobile ? "30px" : "20px",
       }}
     >
       {children}
