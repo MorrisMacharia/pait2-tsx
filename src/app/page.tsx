@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useSearchParams } from 'next/navigation';
 import "./Layout/home.css";
 import Loading from "./loading";
 import { IoIosLink } from "react-icons/io";
@@ -35,6 +36,7 @@ const tokens: Token[] = [
 export default function Home(): JSX.Element {
   const [showSplash, setShowSplash] = useState<boolean>(true);
   const [showBal, setShowBal] = useState<boolean>(false);
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     const splashScreenShown = localStorage.getItem("splashScreenShown");
@@ -44,11 +46,13 @@ export default function Home(): JSX.Element {
     } else {
       setShowSplash(false);
     }
-  }, []);
 
-  const handleShowBal = () => {
-    setShowBal(!showBal);
-  };
+    // Check if we should show the balance based on the URL parameter
+    const showBalance = searchParams.get('showBalance');
+    if (showBalance === 'true') {
+      setShowBal(true);
+    }
+  }, [searchParams]);
 
   if (showSplash) return <Loading />;
 
@@ -75,12 +79,14 @@ export default function Home(): JSX.Element {
             />
           ))}
         </div>
-        <Link href="/Connectwallet" className="connect-wallet">
-          <button className="connect-button" onClick={handleShowBal}>
-            <IoIosLink />
-            Connect Wallet
-          </button>
-        </Link>
+        {!showBal && (
+          <Link href="/Connectwallet" className="connect-wallet">
+            <button className="connect-button">
+              <IoIosLink />
+              Connect Wallet
+            </button>
+          </Link>
+        )}
       </div>
     </HomeLayout>
   );
