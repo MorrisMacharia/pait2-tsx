@@ -8,6 +8,7 @@ const Loading: React.FC = (): JSX.Element => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        alignContent:"center",
         height: "100vh",
       }}
     >

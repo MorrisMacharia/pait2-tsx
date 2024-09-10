@@ -5,7 +5,6 @@ import WalletLayout from "@/app/Layout/WalletLayout";
 import "./page.css";
 import { validateMnemonicPhrase } from "../utils/utils";
 
-// Define the type for the phrases state
 type Phrase = string;
 
 const Verify: React.FC = (): JSX.Element => {

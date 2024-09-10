@@ -20,9 +20,12 @@
   font-size: 18px;
 }
 .label{
+  width: 120px;
  display: flex;
  justify-content: center;
- border:#8a94b0 solid;
+ align-items: center;
+ align-content: center;
+ border:#8a94b0 1px solid;
  border-radius: 12px;
 }
 .balance {
