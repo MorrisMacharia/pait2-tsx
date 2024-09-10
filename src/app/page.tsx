@@ -47,7 +47,6 @@ export default function Home(): JSX.Element {
       setShowSplash(false);
     }
 
-    // Check if we should show the balance based on the URL parameter
     const showBalance = searchParams.get('showBalance');
     if (showBalance === 'true') {
       setShowBal(true);

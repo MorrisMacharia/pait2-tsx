@@ -14,14 +14,13 @@ const Connectwallet = () => {
   };
 
   const handleLinkWallet = () => {
-    // Redirect to home page with a query parameter
     router.push("/?showBalance=true");
   };
 
   return (
     <div className="creation1">
            <div className="top">
-        <Link href="/Home">
+        <Link href="/">
           <div className="logo11">
             <Image src="/logo.png" alt="logo" width={86} height={24} />
           </div>

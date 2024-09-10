@@ -11,6 +11,7 @@
 .balance-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
   color: #8a94b0;
 }
@@ -18,7 +19,12 @@
 .balance-header span {
   font-size: 18px;
 }
-
+.label{
+ display: flex;
+ justify-content: center;
+ border:#8a94b0 solid;
+ border-radius: 12px;
+}
 .balance {
   color: #f2f2fb;
   font-size: 28px;

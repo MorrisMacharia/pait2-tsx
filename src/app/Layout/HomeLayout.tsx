@@ -29,7 +29,6 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children }) => {
         flexDirection: "column",
         justifyContent: "space-around",
         minHeight: "100vh",
-        padding: isMobile ? "30px" : "20px",
       }}
     >
       {children}

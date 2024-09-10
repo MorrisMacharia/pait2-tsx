@@ -2,7 +2,7 @@
 
 body {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: linear-gradient(
       180deg,
       rgba(58, 80, 107, 0.2) 0%,
@@ -10,13 +10,13 @@ body {
     ),
     var(--Background, #0b132b);
   margin: 0;
-  padding: 0;
+  padding: 16px;
   display: flex;
   justify-content: center;
+  align-content: center;
   align-items: center;
 }
 
-/* Reset and base styles */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -94,7 +94,7 @@ body {
   body {
     font-size: 14px;
     justify-content: flex-start;
-    padding: 20px;
+    padding: 16px;
   }
 
   .container {

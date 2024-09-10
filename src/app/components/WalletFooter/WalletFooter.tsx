@@ -3,7 +3,6 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import "../WalletFooter/WalletFooter.css"; 
 
-// Define prop types
 interface WalletFooterProps {
   allPhrasesFilled: boolean;
   onFinish: () => void;

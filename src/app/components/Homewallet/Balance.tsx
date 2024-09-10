@@ -13,7 +13,11 @@ const HomeBalance = () => {
     <div className="home">
       <div className="balance-header">
         <span>My Balance</span>
-        <LuWallet className="wallet-icon" />
+
+        <div className="label">
+<div className="text-wrapper"><LuWallet className="wallet-icon" /> 0x******uio</div>
+</div>
+        
       </div>
       <div className="balance">USDT $30,704</div>
       <div className="breakdown">
