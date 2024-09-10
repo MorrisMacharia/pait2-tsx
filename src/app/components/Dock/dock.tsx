@@ -9,7 +9,7 @@ const BottomNavbar = () => {
   const router = useRouter();
 
   const handleonClick = () => {
-    router.push("/Home");
+    router.push("/");
   };
 
   const navItems = [
