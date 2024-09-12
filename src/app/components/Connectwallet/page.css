@@ -11,7 +11,7 @@
   var(--Background, #0b132b);
   border-radius: 16px;
   opacity: 0;
-  height: 100%;
+  
 }
 
 .modal-overlay.active {
@@ -34,7 +34,6 @@
   width: 100%;
   gap: 70px;
   background-color: #1f2937; 
-  max-height: 90%;
   padding: 16px;
   border-radius: 16px;
   transform: translateY(100%);
