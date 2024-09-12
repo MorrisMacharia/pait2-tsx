@@ -27,8 +27,7 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children }) => {
       style={{
         display: "flex",
         flexDirection: "column",
-        justifyContent: "space-around",
-        minHeight: "100vh",
+        justifyContent: "center",
       }}
     >
       {children}

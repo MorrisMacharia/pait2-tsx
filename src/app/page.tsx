@@ -1,8 +1,7 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams } from "next/navigation";
 import "./Layout/home.css";
 import Loading from "./loading";
 import { IoIosLink } from "react-icons/io";
@@ -10,6 +9,7 @@ import HomeLayout from "./Layout/HomeLayout";
 import { TokenCard } from "./components/Homewallet";
 import PaitCard from "./components/Homewallet/Card";
 import HomeBalance from "./components/Homewallet/Balance";
+import Connectwallet from "./components/Connectwallet/Connectwallet";
 
 interface Token {
   name: string;
@@ -36,6 +36,9 @@ const tokens: Token[] = [
 export default function Home(): JSX.Element {
   const [showSplash, setShowSplash] = useState<boolean>(true);
   const [showBal, setShowBal] = useState<boolean>(false);
+  const [modalState, setModalState] = useState<
+    "closed" | "opening" | "open" | "closing"
+  >("closed");
   const searchParams = useSearchParams();
 
   useEffect(() => {
@@ -47,11 +50,27 @@ export default function Home(): JSX.Element {
       setShowSplash(false);
     }
 
-    const showBalance = searchParams.get('showBalance');
-    if (showBalance === 'true') {
+    const showBalance = searchParams.get("showBalance");
+    if (showBalance === "true") {
       setShowBal(true);
     }
   }, [searchParams]);
+
+  useEffect(() => {
+    if (modalState === "opening") {
+      const timer = setTimeout(() => setModalState("open"), 50);
+      return () => clearTimeout(timer);
+    }
+  }, [modalState]);
+
+  const handleConnectWallet = () => {
+    setModalState("opening");
+  };
+
+  const handleCloseModal = () => {
+    setModalState("closing");
+    setTimeout(() => setModalState("closed"), 300); // Match this with your CSS transition duration
+  };
 
   if (showSplash) return <Loading />;
 
@@ -65,28 +84,38 @@ export default function Home(): JSX.Element {
             <Image src="/Clip.png" alt="home" width={122} height={34} />
           </div>
         )}
-        <PaitCard />
-        <h2>Other Tokens</h2>
-        <div className="cryptopurchase">
-          {tokens.map((token, index) => (
-            <TokenCard
-              key={index}
-              name={token.name}
-              price={token.price}
-              logo={token.logo}
-              description={token.description}
-            />
-          ))}
+
+        <div className="wrapper">
+          <PaitCard />
+          <h2>Other Tokens</h2>
+          <div className="cryptopurchase">
+            {tokens.map((token, index) => (
+              <TokenCard
+                key={index}
+                name={token.name}
+                price={token.price}
+                logo={token.logo}
+                description={token.description}
+              />
+            ))}
+          </div>
         </div>
-        {!showBal && (
-          <Link href="/Connectwallet" className="connect-wallet">
-            <button className="connect-button">
-              <IoIosLink />
-              Connect Wallet
-            </button>
-          </Link>
-        )}
+        <div className="connect-wallet">
+          <button className="connect-button" onClick={handleConnectWallet}>
+            <IoIosLink />
+            Connect Wallet
+          </button>
+        </div>
       </div>
+      {modalState !== "closed" && (
+        <div
+          className={`modal-overlay ${modalState === "open" ? "active" : ""} ${
+            modalState === "closing" ? "closing" : ""
+          }`}
+        >
+          <Connectwallet onClose={handleCloseModal} />
+        </div>
+      )}
     </HomeLayout>
   );
 }

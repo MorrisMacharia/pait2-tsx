@@ -1,6 +1,8 @@
 import Image from "next/image";
 import React from "react";
 import "./page.css";
+import { HiChevronRight } from "react-icons/hi";
+
 
 export default function PaitCard() {
   return (
@@ -11,7 +13,7 @@ export default function PaitCard() {
         <div className="one">
           <span>USD $0.50</span> / 1 $PAIT
         </div>
-        <button className="buybutton">Buy Now &gt;</button>
+        <button className="buybutton">Buy Now   <HiChevronRight /> </button>
       </div>
       <div className="logo">
         <Image src="/Logo3.png" alt="image" width="88" height="88" />

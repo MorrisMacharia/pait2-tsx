@@ -14,6 +14,7 @@
   align-items: center;
   width: 100%;
   color: #8a94b0;
+  
 }
 
 .balance-header span {
@@ -75,6 +76,7 @@
   border: 1px solid rgba(255, 255, 255, 0.5);
   background: radial-gradient(
       92.72% 113.36% at 70.08% 0.1%,
+      
       rgb(191, 168, 255) 0%,
       rgba(191, 168, 255, 0) 100%
     ),
@@ -87,19 +89,25 @@
 }
 
 .wordings {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+display: flex;
+flex-direction: column;
+gap: 5px;
 }
 
 .wordings h2 {
-  color: #0b132b;
+  color: #0B132B;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 22px;
+  line-height:28px;
   margin: 0;
 }
 
 .wordings p {
+  columns: #0B132B;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
   margin: 0;
 }
 
@@ -118,6 +126,7 @@
   background-color: #0b132b;
   display: flex;
   margin-top: 8px;
+  align-items: center;
   gap: 4px;
   color: #f2f2fb;
   line-height: 143%;

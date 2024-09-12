@@ -1,6 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import "../../Layout/home.css";
+import { IoChevronForwardOutline } from "react-icons/io5";
+
 
 interface TokenCardProps {
   name: string;
@@ -23,7 +25,8 @@ export const TokenCard: React.FC<TokenCardProps> = ({ name, price, logo, descrip
         </span>
       </div>
 
-      <button className="small-button">Buy</button>
+      <button className="small-button">Buy  <IoChevronForwardOutline />
+      </button>
     </div>
   );
 };

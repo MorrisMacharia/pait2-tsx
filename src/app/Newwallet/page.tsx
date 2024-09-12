@@ -99,7 +99,7 @@ const Newwallet: React.FC = () => {
           {isLoading ? (
             <div>
               <div className="loader-circle black"></div>
-              <p>Click to reveal secret phrases</p>
+              <p>Creating Wallet</p>
             </div>
           ) : (
             <div className="secret-phrases-grid">

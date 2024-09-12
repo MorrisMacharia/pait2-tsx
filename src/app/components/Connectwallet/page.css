@@ -1,0 +1,160 @@
+.modal-overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #1f2937;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  border-radius: 16px;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  gap: 70px;
+  background-color: #1f2937; 
+  max-height: 80%;
+  padding: 16px;
+  border-radius: 16px;
+  transform: translateY(100%);
+  transition: transform 0.3s ease-in-out;
+  overflow-y: auto;
+}
+
+.modal-overlay.active .modal-content {
+  transform: translateY(0);
+}
+
+.modal-overlay.closing .modal-content {
+  transform: translateY(100%);
+}
+
+.creation1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 80%;
+  gap: 70px;
+  
+}
+
+.circle {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+
+.wall {
+  color: #fff;
+  text-align: center;
+  font-style: normal;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.web {
+  align-self: stretch;
+  font-size: 14px;
+  color: #fff;
+  text-align: center;
+  font-style: normal;
+  font-family: Poppins, sans-serif;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.actions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  gap: 30px;
+}
+
+.crt {
+  color: #fff;
+}
+
+.new,
+.link {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  padding: var(--sds-size-space-200) var(--sds-size-space-400);
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.new {
+  background: #45a5a3;
+}
+
+.link {
+  background: #3a506b;
+}
+
+.crt1 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  text-decoration: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .modal-content {
+    height: 90vh;
+  }
+
+  .creation1 {
+    justify-content: space-between;
+    height: 80%;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .modal-content {
+    height: 90%;
+  }
+
+  .creation1 {
+    justify-content: space-between;
+    height: 80%;
+  }
+
+  .actions {
+    gap: 20px;
+  }
+}

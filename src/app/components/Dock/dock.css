@@ -1,7 +1,7 @@
 .dock {
   display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
+  justify-content: space-around ;
+  align-items: center;
   gap: 16px;
   width: 100%;
   padding: 20px 0;
@@ -39,6 +39,7 @@
 @media (max-width: 768px) {
   .dock {
     padding: 10px 0;
+    gap: 8px;
   }
 
   .dock1, .dock2 {
