@@ -20,7 +20,7 @@ const Connectwallet: React.FC<ConnectwalletProps> = ({ onClose }) => {
 
   return (
     <div className="creation1">
-      <div className="modal-content">
+      {/* <div className="modal-content"> */}
         <div className="top">
           <Link href="/">
             <div className="logo11">
@@ -63,7 +63,7 @@ const Connectwallet: React.FC<ConnectwalletProps> = ({ onClose }) => {
             <div className="crt">Link Existing Wallet</div>
           </button>
         </div>
-      </div>
+      {/* </div> */}
     </div>
   );
 };
