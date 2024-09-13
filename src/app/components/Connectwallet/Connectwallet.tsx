@@ -4,8 +4,8 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import NewwalletModal from "../Newwallet/page"; 
-import "../Connectwallet/page.css"; 
+import NewwalletModal from "../Newwallet/NewwalletModal";
+import "../Connectwallet/page.css";
 
 interface ConnectwalletProps {
   onClose: () => void;
@@ -49,7 +49,8 @@ const Connectwallet: React.FC<ConnectwalletProps> = ({ onClose }) => {
               <Image src="/hand.png" alt="hand" width={240} height={212} />
             </div>
             <div className="web">
-              Your web3 wallet acts as your user account, and is where you store your assets like coins.
+              Your web3 wallet acts as your user account, and is where you store
+              your assets like coins.
             </div>
           </div>
           <div className="actions">
