@@ -10,6 +10,12 @@
   align-items: flex-end;
   z-index: 1000;
   animation: fadeIn 0.3s ease-out;
+  width: 100%;
+  border-radius: 55px;
+  @media screen and (min-width: 768px) {
+    max-width: 440px;
+    margin: 0 auto;
+  }
 }
 
 @keyframes fadeIn {
@@ -28,6 +34,7 @@
     transform: translateY(0);
   }
 }
+
 
 .modal-content {
   background-color: #0b132b;
