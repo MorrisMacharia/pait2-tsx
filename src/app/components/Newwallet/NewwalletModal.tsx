@@ -5,10 +5,10 @@ import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Image from "next/image";
-import Link from "next/link"; // Added to enable navigation
+import Link from "next/link";
 import { generateMnemonicPhrase } from "../../utils/utils";
 import "./page.css";
-import WalletLayout from "@/app/Layout/WalletLayout";
+import VerifyPhrases from "../VerifyPhrases/VerifyPhrases";
 
 interface TextData {
   icon: string;
@@ -24,6 +24,7 @@ const NewwalletModal: React.FC<NewwalletModalProps> = ({ onClose }) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isFinishEnabled, setIsFinishEnabled] = useState<boolean>(false);
   const [generatedPhrases, setGeneratedPhrases] = useState<string[]>([]);
+  const [showVerifyModal, setShowVerifyModal] = useState<boolean>(false);
   const router = useRouter();
 
   const handleClick = () => {
@@ -39,12 +40,12 @@ const NewwalletModal: React.FC<NewwalletModalProps> = ({ onClose }) => {
 
   const handleFinish = () => {
     if (isFinishEnabled) {
-      const searchParams = new URLSearchParams({
-        phrases: JSON.stringify(generatedPhrases),
-      });
-      router.push(`/VerifyPhrases?${searchParams.toString()}`);
-      onClose(); // Close the modal when finished
+      setShowVerifyModal(true);
     }
+  };
+
+  const handleCloseVerifyModal = () => {
+    setShowVerifyModal(false);
   };
 
   const handleCopy = () => {
@@ -74,19 +75,17 @@ const NewwalletModal: React.FC<NewwalletModalProps> = ({ onClose }) => {
     },
     {
       icon: "/triangle-alert.png",
-      title: "Your wallet cannot be recovered if you lose the phrases.",
-      description: "",
+      title: "Your wallet cannot be recovered ",
+      description: "if you lose the phrases.",
     },
   ];
 
   return (
+    <>
+      <div className="modal-overlay" onClick={onClose}>
+        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
 
-    <div className="modal-overlay" onClick={onClose}>
-      <div
-        className="modal-content"
-        onClick={(e) => e.stopPropagation()} 
-      >
-        <div className="top">
+          <div className="top">
           <Link href="/">
             <div className="logo11">
               <Image src="/logo.png" alt="logo" width={86} height={24} />
@@ -96,17 +95,19 @@ const NewwalletModal: React.FC<NewwalletModalProps> = ({ onClose }) => {
             <Image src="/circle-x.png" alt="back" width={24} height={24} />
           </button>
         </div>
+<div className="description2 ">
 
         <h1 className="wall2">Create New Wallet</h1>
         <div className="tips">
           {textData.map((item, index) => (
             <div className="tip1" key={index}>
+              <div className="tip-icon">
               <Image src={item.icon} alt="icon" width={24} height={24} />
-              <div className="secrets">
-                {item.title}
-                <br />
-                {item.description}
               </div>
+              <div className="secrets">
+                  <div className="tip-title">{item.title}</div>
+                  <div className="tip-description">{item.description}</div>
+                </div>
             </div>
           ))}
         </div>
@@ -114,7 +115,7 @@ const NewwalletModal: React.FC<NewwalletModalProps> = ({ onClose }) => {
           className="phrases"
           onClick={handleClick}
           style={{ cursor: isLoading ? "pointer" : "default" }}
-        >
+          >
           {isLoading ? (
             <div>
               <div className="loader-circle black"></div>
@@ -129,6 +130,7 @@ const NewwalletModal: React.FC<NewwalletModalProps> = ({ onClose }) => {
               ))}
             </div>
           )}
+          </div>
         </div>
         {!isLoading && (
           <button
@@ -153,27 +155,32 @@ const NewwalletModal: React.FC<NewwalletModalProps> = ({ onClose }) => {
             Tap to copy
           </button>
         )}
-       <button
-  onClick={handleFinish}
-  disabled={!isFinishEnabled}
-  style={{
-    backgroundColor: isFinishEnabled ? "#45A5A3" : "grey",
-    color: isFinishEnabled ? "#fff" : "#ccc",
-    cursor: isFinishEnabled ? "pointer" : "not-allowed",
-    width:"100%",
-    height:"40px",
-    border: "none",
-    padding: "8px",
-    borderRadius: "12px",
-    fontSize: "14px",
-    fontWeight: "600",
-    transition: "background-color 0.3s, color 0.3s, cursor 0.3s",
-  }}
->
-I Have Saved Them, Continue
-</button>
+
+{!isLoading && (
+          <button
+            onClick={handleFinish}
+            disabled={!isFinishEnabled}
+            style={{
+              backgroundColor: isFinishEnabled ? "#45A5A3" : "grey",
+              color: isFinishEnabled ? "#fff" : "#ccc",
+              cursor: isFinishEnabled ? "pointer" : "not-allowed",
+              width:"100%",
+              height:"40px",
+              border: "none",
+              padding: "8px",
+              borderRadius: "12px",
+              fontSize: "14px",
+              fontWeight: "600",
+              transition: "background-color 0.3s, color 0.3s, cursor 0.3s",
+            }}
+          >
+            I Have Saved Them, Continue
+          </button>
+           )}
+        </div>
       </div>
 
+      {showVerifyModal && <VerifyPhrases onClose={handleCloseVerifyModal} originalPhrases={[]} />}
       <ToastContainer
         position="top-center"
         autoClose={3000}
@@ -182,6 +189,7 @@ I Have Saved Them, Continue
         pauseOnHover
         draggable
         pauseOnFocusLoss
+        
         style={{
           textAlign: "center",
           width: "50%",
@@ -193,7 +201,7 @@ I Have Saved Them, Continue
           boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
         }}
       />
-    </div>
+    </>
   );
 };
 

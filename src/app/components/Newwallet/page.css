@@ -13,11 +13,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
+  gap: 48px;
   width: 100%;
-  height: 100%;
 }
-.modal-content{
+.modal-content {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -25,16 +24,20 @@
 .wall2 {
   color: #fff;
   text-align: center;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 500;
-  margin-bottom: 20px;
+  font-style: normal;
+  line-height: normal;
 }
 
-.tips, .copy, .actions2 {
+.tips,
+.copy,
+.actions2 {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 18px;
   width: 100%;
 }
 
@@ -44,15 +47,28 @@
   gap: 10px;
   width: 100%;
 }
-
-.secrets {
-  color: #f2f2fb;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.4;
-  flex: 1;
+.tip-icon {
+  display: flex;
+  padding: 12px;
+  align-items: center;
+  gap: 10px;
+  border-radius: 1000px;
+  background: #1c2541;
 }
-
+.tip-title {
+  color: #f3f3f3;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+}
+.tip-description {
+  color: white;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
 .phrases {
   display: flex;
   height: auto;
@@ -75,7 +91,8 @@
   box-sizing: border-box;
 }
 
-.creating, .saved {
+.creating,
+.saved {
   color: #0b132b;
   font-size: 14px;
   font-weight: 500;
@@ -101,8 +118,12 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .secret-phrases-grid {
@@ -148,7 +169,7 @@
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(4, 1fr);
   }
-  
+
   .phrase-item {
     font-size: 14px;
   }
@@ -159,24 +180,26 @@
     gap: 30px;
     padding: 30px;
   }
-  
+
   .wall2 {
     font-size: 24px;
   }
-  
-  .tips, .copy, .actions2 {
+
+  .tips,
+  .copy,
+  .actions2 {
     gap: 30px;
   }
-  
+
   .secrets {
     font-size: 16px;
   }
-  
+
   .secret-phrases-grid {
     grid-template-columns: repeat(3, 1fr);
     grid-template-columns: repeat(4, 1fr);
   }
-  
+
   .phrase-item {
     font-size: 16px;
   }
@@ -187,11 +210,11 @@
     gap: 40px;
     padding: 40px;
   }
-  
+
   .wall2 {
     font-size: 28px;
   }
-  
+
   .secret-phrases-grid {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(4, 1fr);
