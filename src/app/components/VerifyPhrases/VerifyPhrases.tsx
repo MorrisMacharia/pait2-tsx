@@ -11,7 +11,7 @@ import Link from "next/link";
 
 type VerifyPhrasesProps = {
   onClose: () => void;
-  originalPhrases: string[]; // Added prop
+  originalPhrases: string[]; 
 };
 
 const VerifyPhrases: React.FC<VerifyPhrasesProps> = ({
@@ -19,7 +19,7 @@ const VerifyPhrases: React.FC<VerifyPhrasesProps> = ({
   originalPhrases,
 }) => {
   const [enteredPhrases, setEnteredPhrases] = useState<string[]>(
-    Array(12).fill("")
+    Array(9).fill("")
   );
   const [isVerified, setIsVerified] = useState<boolean>(false);
   const router = useRouter();
@@ -59,7 +59,7 @@ const VerifyPhrases: React.FC<VerifyPhrasesProps> = ({
   const handleFinish = () => {
     if (isVerified) {
       router.push(`/Verify`);
-      onClose(); // Close the modal when finished
+      onClose(); 
     }
   };
 
@@ -118,7 +118,7 @@ const VerifyPhrases: React.FC<VerifyPhrasesProps> = ({
 
         <div className="finish-button-container">
           <div>
-            <p className="forgot">I forgot to write them down, go back</p>
+            <p className="forgot">   <Image src="/chevron-left.png" width="24" height="24" alt="back" />     I forgot to write them down, go back</p>
           </div>
 
           <button
@@ -127,6 +127,7 @@ const VerifyPhrases: React.FC<VerifyPhrasesProps> = ({
             className="finish-button"
             style={{
               border: "none",
+              borderRadius: "12px",
               backgroundColor: isVerified ? "#45A5A3" : "#1C2541",
               color: isVerified ? "#fff" : "#ccc",
               cursor: isVerified ? "pointer" : "not-allowed",

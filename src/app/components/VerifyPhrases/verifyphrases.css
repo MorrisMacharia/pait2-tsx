@@ -44,13 +44,13 @@
   width: 100%;
   height: 40px;
   border: none;
-  border-radius: 15px;
+  border-radius: 28px;
   background-color: rgb(28, 37, 65);
   font-size: 14px;
 }
 
 .text-wrapper{
-color: antiquewhite;
+color:white;
 font-size: 14px;
 font-weight: 400;
 font-style: normal;
@@ -74,11 +74,17 @@ line-height: 20px;
 }
 
 .verify-title {
-  color: aliceblue;
+  color: white;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: normal;
+  font-style: normal;
+  text-align: center;
 }
 
 .verify-description {
   color: aliceblue;
+  font-size: 12px;
 }
 
 .finish-button {
@@ -110,7 +116,10 @@ line-height: 20px;
   
 }
 .forgot{
-  color: antiquewhite;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
   text-align: center;
   font-size: 12px;
   font-style: normal;
