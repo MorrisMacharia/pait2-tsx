@@ -23,6 +23,7 @@ const VerifyPhrases: React.FC<VerifyPhrasesProps> = ({
   const [enteredPhrases, setEnteredPhrases] = useState<string[]>([]);
   const [isVerified, setIsVerified] = useState<boolean>(false);
   const [focusedInput, setFocusedInput] = useState<number | null>(null);
+  const [toastDisplayed, setToastDisplayed] = useState<boolean>(false); // New state
   const router = useRouter();
 
   useEffect(() => {
@@ -36,20 +37,26 @@ const VerifyPhrases: React.FC<VerifyPhrasesProps> = ({
 
     if (allPhrasesEntered) {
       const isValid = enteredPhrases.every(
-        (phrase, index) => phrase.trim().toLowerCase() === originalPhrases[index].toLowerCase()
+        (phrase, index) =>
+          phrase.trim().toLowerCase() === originalPhrases[index].toLowerCase()
       );
 
       if (isValid) {
         setIsVerified(true);
-        toast.success("Phrases verified successfully!");
+
+        if (!toastDisplayed) {
+          toast.success("Phrases verified successfully!");
+          setToastDisplayed(true); 
+        }
       } else {
         setIsVerified(false);
         toast.error("The entered phrases are incorrect. Please check and try again.");
       }
     } else {
       setIsVerified(false);
+      setToastDisplayed(false); 
     }
-  }, [enteredPhrases, originalPhrases]);
+  }, [enteredPhrases, originalPhrases, toastDisplayed]);
 
   const handleInputChange = (index: number, value: string) => {
     const updatedPhrases = [...enteredPhrases];
@@ -69,7 +76,7 @@ const VerifyPhrases: React.FC<VerifyPhrasesProps> = ({
     if (isVerified) {
       closeAllModals();
       closeConnectWallet();
-      router.push('/?showBalance=true');
+      router.push("/?showBalance=true");
     }
   };
 
@@ -113,7 +120,7 @@ const VerifyPhrases: React.FC<VerifyPhrasesProps> = ({
                       <input
                         key={index}
                         type="text"
-                        className={`phrase-input ${focusedInput === index ? 'focused' : ''}`}
+                        className={`phrase-input ${focusedInput === index ? "focused" : ""}`}
                         value={enteredPhrases[index] || ""}
                         onChange={(e: ChangeEvent<HTMLInputElement>) =>
                           handleInputChange(index, e.target.value)
@@ -121,8 +128,8 @@ const VerifyPhrases: React.FC<VerifyPhrasesProps> = ({
                         onFocus={() => handleInputFocus(index)}
                         onBlur={handleInputBlur}
                         style={{
-                          backgroundColor: focusedInput === index ? 'white' : '',
-                          color: focusedInput === index ? 'black' : '',
+                          backgroundColor: focusedInput === index ? "white" : "",
+                          color: focusedInput === index ? "black" : "",
                         }}
                       />
                     );
@@ -137,7 +144,7 @@ const VerifyPhrases: React.FC<VerifyPhrasesProps> = ({
           <div>
             <p className="forgot">
               <Image src="/chevron-left.png" width="24" height="24" alt="back" />
-             I forgot to write them down, go back
+              I forgot to write them down, go back
             </p>
           </div>
 
@@ -157,7 +164,7 @@ const VerifyPhrases: React.FC<VerifyPhrasesProps> = ({
           </button>
         </div>
       </div>
-      {/* <ToastContainer
+      <ToastContainer
         position="top-center"
         autoClose={3000}
         hideProgressBar={false}
@@ -167,13 +174,9 @@ const VerifyPhrases: React.FC<VerifyPhrasesProps> = ({
         pauseOnFocusLoss
         draggable
         pauseOnHover
-      /> */}
+      />
     </div>
   );
 };
 
 export default VerifyPhrases;
-
-function closeConnectWallet() {
-  throw new Error("Function not implemented.");
-}

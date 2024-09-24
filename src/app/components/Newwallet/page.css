@@ -15,6 +15,7 @@
   align-items: flex-start;
   gap: 48px;
   width: 100%;
+  padding-bottom: 50px;
 }
 .modal-content {
   display: flex;
@@ -92,9 +93,11 @@
 }
 .load{
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  align-content: center;
   gap: 10px;
+ 
 }
 
 .creating,
@@ -159,15 +162,17 @@
   border: 3px solid #f3f3f3;
   border-top: 3px solid #000;
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
+  width: 24px;
+  height: 24px;
   animation: spin 1s linear infinite;
   margin: 0 auto;
 }
 
 .phrases p {
   font-size: 14px;
-  margin-top: 10px;
+  font-weight: 500;
+  font-style: normal;
+  line-height: normal;
 }
 
 @media screen and (min-width: 480px) {
