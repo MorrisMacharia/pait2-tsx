@@ -48,7 +48,14 @@
   background-color: rgb(28, 37, 65);
   font-size: 14px;
 }
+.phrase-input {
+  transition: background-color 0.3s, color 0.3s;
+}
 
+.phrase-input.focused {
+  outline: none;
+  box-shadow: 0 0 0 2px #45A5A3;
+}
 .text-wrapper{
 color:white;
 font-size: 14px;

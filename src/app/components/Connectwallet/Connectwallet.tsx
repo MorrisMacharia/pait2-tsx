@@ -27,7 +27,9 @@ const Connectwallet: React.FC<ConnectwalletProps> = ({ onClose }) => {
   const closeNewWalletModal = () => {
     setShowNewWalletModal(false);
   };
-
+  const closeConnectWallet = () => {
+    onClose();
+  };
   return (
     <div className="modal-overlay">
       <div className="modal-content">
@@ -68,7 +70,12 @@ const Connectwallet: React.FC<ConnectwalletProps> = ({ onClose }) => {
             </button>
           </div>
         </div>
-        {showNewWalletModal && <NewwalletModal onClose={closeNewWalletModal} />}
+        {showNewWalletModal && (
+      <NewwalletModal 
+        onClose={closeNewWalletModal} 
+        closeConnectWallet={closeConnectWallet}
+      />
+    )}
       </div>
     </div>
   );

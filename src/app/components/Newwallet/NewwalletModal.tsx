@@ -18,9 +18,10 @@ interface TextData {
 
 interface NewwalletModalProps {
   onClose: () => void;
+  closeConnectWallet: () => void;
 }
 
-const NewwalletModal: React.FC<NewwalletModalProps> = ({ onClose }) => {
+const NewwalletModal: React.FC<NewwalletModalProps> = ({ onClose, closeConnectWallet }) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isFinishEnabled, setIsFinishEnabled] = useState<boolean>(false);
   const [generatedPhrases, setGeneratedPhrases] = useState<string[]>([]);
@@ -33,7 +34,7 @@ const NewwalletModal: React.FC<NewwalletModalProps> = ({ onClose }) => {
       setIsFinishEnabled(true);
       const mnemonic = generateMnemonicPhrase();
       const phrasesArray = mnemonic.split(" ");
-      setGeneratedPhrases(phrasesArray); // Generates 12 phrases
+      setGeneratedPhrases(phrasesArray); 
       toast.success("Wallet created");
     }
   };
@@ -46,6 +47,10 @@ const NewwalletModal: React.FC<NewwalletModalProps> = ({ onClose }) => {
 
   const handleCloseVerifyModal = () => {
     setShowVerifyModal(false);
+  };
+  const closeAllModals = () => {
+    setShowVerifyModal(false);
+    onClose(); 
   };
 
   const handleCopy = () => {
@@ -79,6 +84,8 @@ const NewwalletModal: React.FC<NewwalletModalProps> = ({ onClose }) => {
       description: "if you lose the phrases.",
     },
   ];
+
+ 
 
   return (
     <>
@@ -176,10 +183,15 @@ const NewwalletModal: React.FC<NewwalletModalProps> = ({ onClose }) => {
           )}
         </div>
       </div>
-
       {showVerifyModal && (
-        <VerifyPhrases onClose={handleCloseVerifyModal} originalPhrases={generatedPhrases.slice(0, 9)} />
-      )}
+  <VerifyPhrases
+    onClose={handleCloseVerifyModal}  
+    originalPhrases={generatedPhrases}  
+    closeAllModals={closeAllModals} 
+    closeConnectWallet={closeConnectWallet} 
+  />
+)}
+    
       <ToastContainer
         position="top-center"
         autoClose={3000}
