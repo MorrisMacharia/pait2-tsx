@@ -33,7 +33,10 @@
   display: flex;
   align-items: center;
 }
-
+.phrase-input.active {
+  background-color: white;
+  color: black;
+}
 .phrase-inputs {
   display: flex;
   gap: 8px;

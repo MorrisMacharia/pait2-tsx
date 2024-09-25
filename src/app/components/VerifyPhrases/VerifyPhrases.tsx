@@ -22,8 +22,8 @@ const VerifyPhrases: React.FC<VerifyPhrasesProps> = ({
 }) => {
   const [enteredPhrases, setEnteredPhrases] = useState<string[]>([]);
   const [isVerified, setIsVerified] = useState<boolean>(false);
-  const [focusedInput, setFocusedInput] = useState<number | null>(null);
-  const [toastDisplayed, setToastDisplayed] = useState<boolean>(false); // New state
+  const [activeInputs, setActiveInputs] = useState<boolean[]>(new Array(9).fill(false));
+  const [toastDisplayed, setToastDisplayed] = useState<boolean>(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -64,12 +64,12 @@ const VerifyPhrases: React.FC<VerifyPhrasesProps> = ({
     setEnteredPhrases(updatedPhrases);
   };
 
-  const handleInputFocus = (index: number) => {
-    setFocusedInput(index);
-  };
-
-  const handleInputBlur = () => {
-    setFocusedInput(null);
+  const handleInputClick = (index: number) => {
+    setActiveInputs(prev => {
+      const newActiveInputs = [...prev];
+      newActiveInputs[index] = !newActiveInputs[index];
+      return newActiveInputs;
+    });
   };
 
   const handleFinish = () => {
@@ -120,16 +120,15 @@ const VerifyPhrases: React.FC<VerifyPhrasesProps> = ({
                       <input
                         key={index}
                         type="text"
-                        className={`phrase-input ${focusedInput === index ? "focused" : ""}`}
+                        className={`phrase-input ${activeInputs[index] ? "active" : ""}`}
                         value={enteredPhrases[index] || ""}
                         onChange={(e: ChangeEvent<HTMLInputElement>) =>
                           handleInputChange(index, e.target.value)
                         }
-                        onFocus={() => handleInputFocus(index)}
-                        onBlur={handleInputBlur}
+                        onClick={() => handleInputClick(index)}
                         style={{
-                          backgroundColor: focusedInput === index ? "white" : "",
-                          color: focusedInput === index ? "black" : "",
+                          backgroundColor: activeInputs[index] ? "white" : "",
+                          color: activeInputs[index] ? "black" : "",
                         }}
                       />
                     );
