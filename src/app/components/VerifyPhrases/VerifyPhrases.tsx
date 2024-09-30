@@ -3,7 +3,6 @@ import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./verifyphrases.css";
-import { validateMnemonicPhrase } from "../../utils/utils";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -22,8 +21,10 @@ const VerifyPhrases: React.FC<VerifyPhrasesProps> = ({
 }) => {
   const [enteredPhrases, setEnteredPhrases] = useState<string[]>([]);
   const [isVerified, setIsVerified] = useState<boolean>(false);
-  const [activeInputs, setActiveInputs] = useState<boolean[]>(new Array(9).fill(false));
-  const [toastDisplayed, setToastDisplayed] = useState<boolean>(false);
+  const [activeInputs, setActiveInputs] = useState<boolean[]>(
+    new Array(9).fill(false)
+  );
+  const [userInteracted, setUserInteracted] = useState<boolean>(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -44,45 +45,74 @@ const VerifyPhrases: React.FC<VerifyPhrasesProps> = ({
       if (isValid) {
         setIsVerified(true);
 
-        if (!toastDisplayed) {
-          toast.success("Phrases verified successfully!");
-          setToastDisplayed(true); 
+        if (!toast.isActive("success-toast")) {
+          toast.success("Phrases verified successfully!", {
+            toastId: "success-toast",
+          });
         }
       } else {
         setIsVerified(false);
-        toast.error("The entered phrases are incorrect. Please check and try again.");
+        if (!toast.isActive("error-toast")) {
+          toast.error(
+            "The entered phrases are incorrect. Please check and try again.",
+            { toastId: "error-toast" }
+          );
+        }
       }
     } else {
       setIsVerified(false);
-      setToastDisplayed(false); 
     }
-  }, [enteredPhrases, originalPhrases, toastDisplayed]);
+  }, [enteredPhrases, originalPhrases]);
 
   const handleInputChange = (index: number, value: string) => {
     const updatedPhrases = [...enteredPhrases];
     updatedPhrases[index] = value;
     setEnteredPhrases(updatedPhrases);
+    setUserInteracted(true);
   };
 
   const handleInputClick = (index: number) => {
-    setActiveInputs(prev => {
+    setActiveInputs((prev) => {
       const newActiveInputs = [...prev];
       newActiveInputs[index] = !newActiveInputs[index];
       return newActiveInputs;
     });
+    setUserInteracted(true);
   };
 
-  const handleFinish = () => {
+  const handleFinish = async () => {
     if (isVerified) {
       closeAllModals();
       closeConnectWallet();
-      router.push("/?showBalance=true");
+      router.replace("/?showBalance=true");
     }
   };
 
   const getPrompt = (row: number) => {
     const prompts = ["first", "second", "third"];
     return prompts[row] || "";
+  };
+
+  const getButtonStyle = () => {
+    if (!isVerified) {
+      return {
+        backgroundColor: "#1C2541",
+        color: "#ccc",
+        cursor: "not-allowed",
+      };
+    }
+    if (userInteracted) {
+      return {
+        backgroundColor: "#45A5A3",
+        color: "#fff",
+        cursor: "pointer",
+      };
+    }
+    return {
+      backgroundColor: "#1C2541",
+      color: "#fff",
+      cursor: "pointer",
+    };
   };
 
   return (
@@ -101,7 +131,8 @@ const VerifyPhrases: React.FC<VerifyPhrasesProps> = ({
         <div className="verify-container">
           <h1 className="verify-title">Verify Secret Phrases</h1>
           <p className="verify-description">
-            Please review the auto-filled phrases and make any necessary corrections.
+            Please review the auto-filled phrases and make any necessary
+            corrections.
           </p>
           <div className="phrases-grid">
             {Array.from({ length: 3 }).map((_, rowIndex) => (
@@ -120,7 +151,9 @@ const VerifyPhrases: React.FC<VerifyPhrasesProps> = ({
                       <input
                         key={index}
                         type="text"
-                        className={`phrase-input ${activeInputs[index] ? "active" : ""}`}
+                        className={`phrase-input ${
+                          activeInputs[index] ? "active" : ""
+                        }`}
                         value={enteredPhrases[index] || ""}
                         onChange={(e: ChangeEvent<HTMLInputElement>) =>
                           handleInputChange(index, e.target.value)
@@ -142,7 +175,12 @@ const VerifyPhrases: React.FC<VerifyPhrasesProps> = ({
         <div className="finish-button-container">
           <div>
             <p className="forgot">
-              <Image src="/chevron-left.png" width="24" height="24" alt="back" />
+              <Image
+                src="/chevron-left.png"
+                width="24"
+                height="24"
+                alt="back"
+              />
               I forgot to write them down, go back
             </p>
           </div>
@@ -154,9 +192,7 @@ const VerifyPhrases: React.FC<VerifyPhrasesProps> = ({
             style={{
               border: "none",
               borderRadius: "12px",
-              backgroundColor: isVerified ? "#45A5A3" : "#1C2541",
-              color: isVerified ? "#fff" : "#ccc",
-              cursor: isVerified ? "pointer" : "not-allowed",
+              ...getButtonStyle(),
             }}
           >
             Finish
